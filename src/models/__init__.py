@@ -1,10 +1,6 @@
-from models.sample_entity_status import SampleEntityStatus
-from models.sample_entity import SampleEntity
-from models.sample_entity_status_event import SampleEntityStatusEvent
-from models.sample_xml import SampleXml
-
 from models.service import ServiceModel
 from models.service_request import ServiceRequestModel
 from models.service_request_status import ServiceRequestStatusModel
 from models.service_request_status_event import ServiceRequestStatusEventModel
+from models.service_status import ServiceStatusModel
 from models.service_type import ServiceTypeModel

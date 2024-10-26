@@ -17,6 +17,8 @@ class ServiceModel(Base):
     created_at = Column(DateTime, nullable=False, server_default="DEFAULT")
     updated_at = Column(DateTime)
 
-    service_type = relationship("ServiceTypeModel", foreign_keys=[service_type_id], lazy="joined")
+    service_type: ServiceTypeModel = relationship("ServiceTypeModel", foreign_keys=[service_type_id], lazy="joined")
 
-    service_status = relationship("ServiceStatusModel", foreign_keys=[service_status_id], lazy="joined")
+    service_status: ServiceStatusModel = relationship(
+        "ServiceStatusModel", foreign_keys=[service_status_id], lazy="joined"
+    )

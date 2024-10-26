@@ -14,5 +14,5 @@ class ServiceRequestModel(Base):
     service_request_status_id = Column(Integer, ForeignKey(ServiceRequestStatusModel.id))
 
     service_request_status = relationship(
-      "ServiceRequestStatusModel", foreign_keys=[service_request_status_id], lazy="joined"
+        "ServiceRequestStatusModel", foreign_keys=[service_request_status_id], lazy="joined"
     )
