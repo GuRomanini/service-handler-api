@@ -16,7 +16,8 @@ DB_HOST = environ.get("DB_HOST")
 DB_PASSWORD = environ.get("DB_PASSWORD")
 
 INTERNAL_TOKEN = environ.get("INTERNAL_TOKEN")
-    
+
+
 def check_variables():
     variable_names = [k for k in dir() if (k[:2] != "__" and not callable(globals()[k]))]
     variables_without_value = []
