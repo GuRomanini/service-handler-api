@@ -1,41 +1,32 @@
-from controllers.base_controller import BaseController
-from mappers import ServiceMapper
-from repositories import ServiceRepository
-from models import ServiceModel
-from utils.context import Context
+from uuid import uuid4
 
-class ServiceController(BaseController):
+from mappers import ServiceMapper
+from models import ServiceModel
+from repositories import ServiceRepository
+
+from utils.context import Context
+from utils.logger import Logger
+
+
+class ServiceController:
     def __init__(self, context: Context) -> None:
-        super().__init__(context, __name__)
-        self.service_repository = ServiceRepository(context)
+        self.logger = Logger(context, __name__)
+        self.context = context
 
     def create_by_data(self, service_data: dict) -> dict:
         self.logger.debug("Creating a new Service")
-        service = self.service_repository.create(service_data)
+
+        service_repository = ServiceRepository(context=self.context)
+
+        service_model = ServiceModel()
+        service_model.service_key = str(uuid4())
+        service_model.service_status = service_repository.get_service_status_model_by_enumerator("active")
+        service_model.service_type = service_repository.get_service_type_model_by_enumerator(
+            service_data["service_type"]
+        )
+        service_model.service_name = service_data["service_name"]
+
+        self.context.db_session.add(service_model)
         self.context.db_session.commit()
 
-        return ServiceMapper.to_dto(service)
-
-    # def get_by_key(self, requester_key: str, sample_entity_key: str) -> SampleEntity:
-    #     self.logger.debug(f"Fetching Entity with key {sample_entity_key} for requester {requester_key}")
-    #     sample_entity = self.sample_entity_repository.get_by_requester_and_key(requester_key, sample_entity_key)
-    #     if sample_entity is None:
-    #         raise NotFoundSampleEntity(sample_entity_key)
-
-    #     sample_entity_dto = SampleEntityDTO(sample_entity).to_dict()
-
-    #     return sample_entity_dto
-
-    # def update_status(self, requester_key: str, sample_entity_key: str, update_payload: dict) -> None:
-    #     self.logger.debug(f"Fetching Entity with key {sample_entity_key} for requester {requester_key}")
-    #     sample_entity = self.sample_entity_repository.get_by_requester_and_key(requester_key, sample_entity_key)
-    #     if sample_entity is None:
-    #         raise NotFoundSampleEntity(sample_entity_key)
-
-    #     old_status = sample_entity.status.enumerator
-    #     new_status = update_payload["status"]
-
-    #     if old_status != "created":
-    #         raise SampleEntityFinalStatus(old_status, new_status)
-
-    #     self.sample_entity_repository.update_status(sample_entity, new_status)
+        return ServiceMapper.to_dto(service_model)
