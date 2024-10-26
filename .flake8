@@ -4,9 +4,11 @@ max-line-length = 88
 max-complexity = 18
 select = B,C,E,F,W,T4,B9
 exclude =
-    src/errors/__init__.py,
+    src/connectors/__init__.py,
     src/controllers/__init__.py,
+    src/errors/__init__.py,
+    src/mappers/__init__.py,
     src/models/__init__.py,
     src/repositories/__init__.py,
-    src/connectors/__init__.py,
+    src/resources/__init__.py,
     src/schemas/__init__.py
