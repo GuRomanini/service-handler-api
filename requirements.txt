@@ -9,6 +9,6 @@ protobuf
 pydantic
 PyMySQL
 requests
-secure
+secure==0.3.0
 SQLAlchemy
 xmltodict
