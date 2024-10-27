@@ -49,11 +49,12 @@ CREATE TABLE ServiceRequestStatus(
 );
 
 INSERT INTO ServiceRequestStatus (enumerator) VALUES
-	 ('on_queue'),
-	 ('in_progress'),
-	 ('completed'),
-     ('cancelled'),
-     ('aborted');
+    ('scheduled'),
+    ('on_queue'),
+    ('in_progress'),
+    ('completed'),
+    ('cancelled'),
+    ('aborted');
 
 CREATE TABLE ServiceRequest(
     id		                    INT NOT NULL UNIQUE AUTO_INCREMENT,
