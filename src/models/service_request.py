@@ -16,8 +16,8 @@ class ServiceRequestModel(Base):
     service_request_status: ServiceRequestStatusModel = relationship(
         "ServiceRequestStatusModel", foreign_keys=[service_request_status_id], lazy="joined"
     )
-    status_events = relationship(
-        "ServiceRequestStatusEventModel",
+    events = relationship(
+        "ServiceRequestEventModel",
         back_populates="service_request",
-        order_by="asc(ServiceRequestStatusEventModel.created_at)",
+        order_by="asc(ServiceRequestEventModel.created_at)",
     )

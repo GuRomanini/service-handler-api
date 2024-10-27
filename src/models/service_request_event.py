@@ -5,8 +5,8 @@ from models.service_request import ServiceRequestModel
 from models.service_request_status import ServiceRequestStatusModel
 
 
-class ServiceRequestStatusEventModel(Base):
-    __tablename__ = "ServiceRequestStatusEvent"
+class ServiceRequestEventModel(Base):
+    __tablename__ = "ServiceRequestEvent"
     __table_args__ = {"schema": "service_handler"}
 
     id = Column(Integer, primary_key=True)
