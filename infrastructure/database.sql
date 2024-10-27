@@ -81,3 +81,29 @@ CREATE TABLE ServiceRequestEvent(
     CONSTRAINT fk_service_request_status_event FOREIGN KEY (service_request_status_id)
         REFERENCES ServiceRequestStatus(id)
 );
+
+CREATE TABLE UAVStatus(
+    id                          INT NOT NULL UNIQUE AUTO_INCREMENT,
+    enumerator                  VARCHAR(50) NOT NULL UNIQUE,
+    created_at                  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    PRIMARY KEY (id)
+);
+
+INSERT INTO UAVStatus (enumerator) VALUES
+    ('ready'),
+    ('busy'),
+    ('inactive');
+
+CREATE TABLE UAV(
+    id                          INT NOT NULL UNIQUE AUTO_INCREMENT,
+    uav_key                     CHAR(36) NOT NULL UNIQUE,
+    uav_name                    VARCHAR(100) NOT NULL,
+    uav_status_id               INT NOT NULL,
+    created_at                  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+
+    PRIMARY KEY (id),
+    CONSTRAINT fk_uav_status_uav FOREIGN KEY (uav_status_id)
+        REFERENCES UAVStatus(id)
+);
+

@@ -9,11 +9,15 @@ from middlewares.context_creator import ContextCreator
 from middlewares.input_output import InputOutputMiddleware
 from middlewares.secure_headers import SecureHeaders
 
-from resources.health_check import HealthcheckResource
-from resources.home import Home
-from resources.time import TimeResource
-from resources.sink import SinkResource
-from resources import ServiceRequestResource, ServiceResource
+from resources import (
+    HealthcheckResource,
+    Home,
+    ServiceRequestResource,
+    ServiceResource,
+    SinkResource,
+    TimeResource,
+    UAVResource,
+)
 
 from constants import check_variables
 
@@ -48,6 +52,9 @@ def create():
 
     service_resource = ServiceResource()
     api.add_route("/service", service_resource)
+
+    uav_resource = UAVResource()
+    api.add_route("/uav", uav_resource)
 
     return api
 

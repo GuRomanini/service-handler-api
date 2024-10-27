@@ -4,3 +4,5 @@ from models.service_request_status import ServiceRequestStatusModel
 from models.service_request_status_event import ServiceRequestStatusEventModel
 from models.service_status import ServiceStatusModel
 from models.service_type import ServiceTypeModel
+from models.uav import UAVModel
+from models.uav_status import UAVStatusModel
