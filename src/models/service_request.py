@@ -13,6 +13,11 @@ class ServiceRequestModel(Base):
     requester_key = Column(String)
     service_request_status_id = Column(Integer, ForeignKey(ServiceRequestStatusModel.id))
 
-    service_request_status = relationship(
+    service_request_status: ServiceRequestStatusModel = relationship(
         "ServiceRequestStatusModel", foreign_keys=[service_request_status_id], lazy="joined"
+    )
+    status_events = relationship(
+        "ServiceRequestStatusEventModel",
+        back_populates="service_request",
+        order_by="asc(ServiceRequestStatusEventModel.created_at)",
     )

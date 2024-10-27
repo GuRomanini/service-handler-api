@@ -1,7 +1,8 @@
 from sqlalchemy import Column, ForeignKey, Integer, DateTime
 from models.base import Base
 from sqlalchemy.orm import relationship
-from models import ServiceRequestModel, ServiceRequestStatusModel
+from models.service_request import ServiceRequestModel
+from models.service_request_status import ServiceRequestStatusModel
 
 
 class ServiceRequestStatusEventModel(Base):
@@ -14,11 +15,10 @@ class ServiceRequestStatusEventModel(Base):
     created_at = Column(DateTime, nullable=False, server_default="DEFAULT")
 
     service_request = relationship(
-        "ServiceRequest",
+        "ServiceRequestModel",
         foreign_keys=[service_request_id],
-        back_populates="status_events",
         lazy="joined",
     )
     service_request_status = relationship(
-        "ServiceRequestStatus", foreign_keys=[service_request_status_id], lazy="joined"
+        "ServiceRequestStatusModel", foreign_keys=[service_request_status_id], lazy="joined"
     )
