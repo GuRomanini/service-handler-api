@@ -37,8 +37,6 @@ spec:
             value: "service-handler-api"
           - name: API_PORT
             value: "3000"
-          - name: APP_ENV
-            value: "local"
           - name: DB_NAME
             value: "base"
           - name: DB_USER
@@ -49,10 +47,6 @@ spec:
             value: "default"
           - name: DB_HOST
             value: "0.0.0.0"
-          - name: PRIVATE_KEY_TEST
-            value: "private-key-test"
-          - name: PUBLIC_KEY_TEST
-            value: "public-key-test"
           - name: INTERNAL_TOKEN
             value: "internal@123"
         ports:
