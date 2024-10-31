@@ -1,7 +1,5 @@
 falcon
 google
-google-cloud-pubsub
-google-cloud-secret-manager
 google-cloud-storage
 gunicorn
 jsonschema
@@ -11,4 +9,3 @@ PyMySQL
 requests
 secure==0.3.0
 SQLAlchemy
-xmltodict
