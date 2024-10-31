@@ -67,7 +67,7 @@ def main():
 
     api.add_error_handler(Exception, APIErrorHandler.unexpected)
     api.add_error_handler(falcon.HTTPMethodNotAllowed, APIErrorHandler.method_not_allowed)
-    api.add_error_handler(BaseException, APIErrorHandler.qi_exception)
+    api.add_error_handler(BaseException, APIErrorHandler.uaas_exception)
     return api
 
 

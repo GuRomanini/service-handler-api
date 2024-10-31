@@ -9,7 +9,7 @@ from utils.logger import Logger
 
 class APIErrorHandler:
     @staticmethod
-    def qi_exception(ex, *args):
+    def uaas_exception(req, resp, ex, params):
         raise FalconBaseException(ex)
 
     @staticmethod
