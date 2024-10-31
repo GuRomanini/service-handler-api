@@ -14,7 +14,4 @@ class UAVModel(Base):
     uav_status_id = Column(Integer, ForeignKey(UAVStatusModel.id), nullable=False)
     created_at = Column(DateTime, nullable=False, server_default="DEFAULT")
 
-
-    uav_status: UAVStatusModel = relationship(
-        "UAVStatusModel", foreign_keys=[uav_status_id], lazy="joined"
-    )
+    uav_status: UAVStatusModel = relationship("UAVStatusModel", foreign_keys=[uav_status_id], lazy="joined")
