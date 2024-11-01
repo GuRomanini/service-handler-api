@@ -31,10 +31,10 @@ services:
       SERVICE_NAME: service-handler-api
       API_PORT: 3000
       DB_NAME: service_handler
-      DB_USER: root
+      DB_USER: romanini
       DB_PASSWORD: default
       DB_PORT: 3306
-      DB_HOST: 0.0.0.0
+      DB_HOST: db
       INTERNAL_TOKEN: internal@123
 
     depends_on:
