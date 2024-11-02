@@ -1,6 +1,7 @@
 cryptography
 falcon
 google
+google-cloud-sql-connector
 google-cloud-storage
 gunicorn
 jsonschema
