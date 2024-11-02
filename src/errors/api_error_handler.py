@@ -32,6 +32,7 @@ class FalconBaseException(HTTPError):
         self.description = rsfn_exception.description
         self.translation = rsfn_exception.translation
         self.code = rsfn_exception.code
+        self.extra_fields = rsfn_exception.extra_fields
 
     def to_dict(self):
         obj = dict()
@@ -39,6 +40,9 @@ class FalconBaseException(HTTPError):
         obj["description"] = self.description
         obj["translation"] = self.translation
         obj["code"] = self.code
+
+        if self.extra_fields is not None:
+            obj["extra_fields"] = self.extra_fields
 
         if self.link is not None:
             obj["link"] = self.link

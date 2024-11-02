@@ -23,12 +23,13 @@ def error_verification():
 
 
 class BaseException(Exception):
-    def __init__(self, title, code, http_status, description, translation) -> None:
+    def __init__(self, title, code, http_status, description, translation, extra_fields: dict = None) -> None:
         self.title = title
         self.description = description
         self.translation = translation
         self.code = code
         self.http_status = http_status
+        self.extra_fields = extra_fields
 
 
 class MethodNotAllowed(BaseException):

@@ -17,6 +17,7 @@ from resources import (
     SinkResource,
     TimeResource,
     UAVResource,
+    UAVServiceResource,
 )
 
 from constants import check_variables
@@ -55,6 +56,9 @@ def create():
 
     uav_resource = UAVResource()
     api.add_route("/uav", uav_resource)
+
+    uav_service_resource = UAVServiceResource()
+    api.add_route("/uav/service", uav_service_resource)
 
     return api
 
