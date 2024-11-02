@@ -1,4 +1,4 @@
-FROM python:3 AS base
+FROM python:3.10 AS base
 
 ARG PROJECT_NAME=service-handler-api
 RUN apt-get update
