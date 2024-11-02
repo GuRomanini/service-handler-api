@@ -32,6 +32,7 @@ INSERT INTO ServiceStatus (enumerator) VALUES
 CREATE TABLE Service(
     id                          INT NOT NULL UNIQUE AUTO_INCREMENT,
     service_key                 CHAR(36) NOT NULL UNIQUE,
+    service_name                VARCHAR(100) NOT NULL UNIQUE,
     service_type_id             INT NOT NULL,
     service_status_id           INT NOT NULL,
     created_at                  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
