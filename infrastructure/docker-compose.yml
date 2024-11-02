@@ -21,7 +21,7 @@ services:
       dockerfile: ./infrastructure/api.dockerfile
     container_name: service-handler-api
     ports:
-      - "3000:3000"
+      - "8080:8080"
 
     environment:
       APP_ENV: local
@@ -29,7 +29,7 @@ services:
       GUNICORN_WORKER_TIMEOUT: 360
       GUNICORN_RELOAD: True
       SERVICE_NAME: service-handler-api
-      API_PORT: 3000
+      API_PORT: 8080
       DB_NAME: service_handler
       DB_USER: romanini
       DB_PASSWORD: default
