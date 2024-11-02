@@ -13,6 +13,7 @@ class UAVServiceModel(Base):
     uav_id = Column(Integer, ForeignKey(UAVModel.id), nullable=False)
     service_id = Column(Integer, ForeignKey(ServiceModel.id), nullable=False)
     base_url = Column(String)
+    is_active = Column(Integer)
 
     uav: UAVModel = relationship("UAVModel", foreign_keys=[uav_id], lazy="selectin")
     service: ServiceModel = relationship("ServiceModel", foreign_keys=[service_id], lazy="selectin")

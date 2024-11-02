@@ -76,6 +76,7 @@ CREATE TABLE UAVService(
     uav_id                      INT NOT NULL,
     service_id                  INT NOT NULL,
     base_url                    VARCHAR(300),
+    is_active                   TINYINT(1),
 
     PRIMARY KEY (id),
     CONSTRAINT fk_uav_service_uav FOREIGN KEY (uav_id)

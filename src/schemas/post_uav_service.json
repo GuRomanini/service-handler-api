@@ -1,28 +1,27 @@
 {
-    "title": "PostUAVService",
-    "type": "object",
-    "properties": {
-      "service_name": {
-        "type": "string",
-        "minLength": 1,
-        "maxLength": 100
-      },
-      "uav_key": {
-        "type": "string",
-        "minLength": 36,
-        "maxLength": 36
-      },
-      "base_url": {
-        "type": "string",
-        "minLength": 5,
-        "maxLength": 300
-      }
+  "title": "PostUAVService",
+  "type": "object",
+  "properties": {
+    "service_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100
     },
-    "required": [
-      "service_name",
-      "uav_key",
-      "base_url"
-    ],
-    "additionalProperties": false
-  }
-  
+    "uav_key": {
+      "type": "string",
+      "minLength": 36,
+      "maxLength": 36
+    },
+    "base_url": {
+      "type": "string",
+      "minLength": 5,
+      "maxLength": 300
+    }
+  },
+  "required": [
+    "service_name",
+    "uav_key",
+    "base_url"
+  ],
+  "additionalProperties": false
+}
