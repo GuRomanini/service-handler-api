@@ -14,7 +14,7 @@ from constants import (
 
 class SessionManager:
     engine = create_engine(
-        f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@/{DB_NAME}?unix_sock=/cloudsql/{CLOUD_SQL_CONNECTION_NAME}"
+        f"mysql+pymysql://{DB_USER}:{DB_PASSWORD}@{DB_NAME}?unix_sock=/cloudsql/{CLOUD_SQL_CONNECTION_NAME}"
     )
     session_class = sessionmaker(bind=engine, autoflush=False)
     ThreadSession = scoped_session(session_class)
