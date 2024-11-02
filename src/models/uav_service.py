@@ -18,4 +18,3 @@ class UAVServiceModel(Base):
     service: ServiceModel = relationship("ServiceModel", foreign_keys=[service_id], lazy="selectin")
 
     created_at = Column(DateTime, nullable=False, server_default="DEFAULT")
-
