@@ -15,6 +15,8 @@ DB_NAME = environ.get("DB_NAME")
 DB_HOST = environ.get("DB_HOST")
 DB_PASSWORD = environ.get("DB_PASSWORD")
 
+CLOUD_SQL_CONNECTION_NAME = environ.get("CLOUD_SQL_CONNECTION_NAME")
+
 INTERNAL_TOKEN = environ.get("INTERNAL_TOKEN")
 
 
