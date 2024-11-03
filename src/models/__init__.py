@@ -2,7 +2,6 @@ from models.service import ServiceModel
 from models.service_request import ServiceRequestModel
 from models.service_request_status import ServiceRequestStatusModel
 from models.service_request_event import ServiceRequestEventModel
-from models.service_status import ServiceStatusModel
 from models.service_type import ServiceTypeModel
 from models.uav import UAVModel
 from models.uav_service import UAVServiceModel

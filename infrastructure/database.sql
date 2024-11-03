@@ -34,13 +34,12 @@ CREATE TABLE Service(
     service_key                 CHAR(36) NOT NULL UNIQUE,
     service_name                VARCHAR(100) NOT NULL UNIQUE,
     service_type_id             INT NOT NULL,
-    service_status_id           INT NOT NULL,
+    is_active                   TINYINT(1),
     created_at                  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
+    PRIMARY KEY (id),
     CONSTRAINT fk_service_type_service FOREIGN KEY (service_type_id)
-        REFERENCES ServiceType(id),
-    CONSTRAINT fk_service_status_service FOREIGN KEY (service_status_id)
-        REFERENCES ServiceStatus(id)
+        REFERENCES ServiceType(id)
 );
 
 
