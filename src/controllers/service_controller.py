@@ -14,7 +14,7 @@ class ServiceController:
         self.context = context
 
     def create_by_data(self, service_data: dict) -> dict:
-        self.logger.debug("Creating a new Service")
+        self.logger.info("Creating a new Service")
 
         service_repository = ServiceRepository(context=self.context)
 

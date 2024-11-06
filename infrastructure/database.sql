@@ -72,6 +72,9 @@ CREATE TABLE UAV(
 
 CREATE TABLE UAVService(
     id                          INT NOT NULL UNIQUE AUTO_INCREMENT,
+    uav_service_key             CHAR(36) NOT NULL UNIQUE,
+    uav_key                     CHAR(36) NOT NULL,
+    service_key                 CHAR(36) NOT NULL,
     uav_id                      INT NOT NULL,
     service_id                  INT NOT NULL,
     base_url                    VARCHAR(300),

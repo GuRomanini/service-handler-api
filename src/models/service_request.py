@@ -15,7 +15,7 @@ class ServiceRequestModel(Base):
     service_request_status_id = Column(Integer, ForeignKey(ServiceRequestStatusModel.id))
     created_at = Column(DateTime, nullable=False, server_default="DEFAULT")
 
-    uav_service = UAVServiceModel = relationship("UAVServiceModel", foreign_keys=[uav_service_id], lazy="selectin")
+    uav_service: UAVServiceModel = relationship("UAVServiceModel", foreign_keys=[uav_service_id], lazy="selectin")
     service_request_status: ServiceRequestStatusModel = relationship(
         "ServiceRequestStatusModel", foreign_keys=[service_request_status_id], lazy="joined"
     )

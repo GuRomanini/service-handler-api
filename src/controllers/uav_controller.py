@@ -14,7 +14,7 @@ class UAVController:
         self.context = context
 
     def create_by_data(self, uav_data: dict) -> dict:
-        self.logger.debug("Registering a new UAV")
+        self.logger.info("Registering a new UAV")
 
         uav_repository = UAVRepository(context=self.context)
 

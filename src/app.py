@@ -49,7 +49,7 @@ def create():
     api.add_route("/time", time_resource)
 
     service_request_resource = ServiceRequestResource()
-    api.add_route("/service/request", service_request_resource)
+    api.add_route("/service_request", service_request_resource)
 
     service_resource = ServiceResource()
     api.add_route("/service", service_resource)

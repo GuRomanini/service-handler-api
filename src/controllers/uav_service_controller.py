@@ -1,4 +1,4 @@
-from errors import ServiceNotFound, UAVNotFound
+from errors import ServiceNotFoundByName, UAVNotFound
 from mappers import UAVServiceMapper
 from models import ServiceModel, UAVModel, UAVServiceModel
 from repositories import ServiceRepository
@@ -13,7 +13,7 @@ class UAVServiceController:
         self.context = context
 
     def create_by_data(self, uav_service_data: dict) -> dict:
-        self.logger.debug("Creating a new UAVService")
+        self.logger.info("Creating a new UAVService")
 
         uav_model = (
             self.context.db_session.query(UAVModel).filter(UAVModel.uav_key == uav_service_data["uav_key"]).first()
@@ -34,7 +34,7 @@ class UAVServiceController:
         )
 
         if uav_model is None:
-            raise ServiceNotFound(extra_fields={"service_name": uav_service_data["service_name"]})
+            raise ServiceNotFoundByName(extra_fields={"service_name": uav_service_data["service_name"]})
 
         uav_service_model = UAVServiceModel()
         uav_service_model.uav = uav_model

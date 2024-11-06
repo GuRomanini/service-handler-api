@@ -10,6 +10,9 @@ class UAVServiceModel(Base):
     __table_args__ = {"schema": "service_handler"}
 
     id = Column(Integer, primary_key=True)
+    uav_service_key = Column(String, nullable=False, unique=True)
+    uav_key = Column(String, nullable=False)
+    service_key = Column(String, nullable=False)
     uav_id = Column(Integer, ForeignKey(UAVModel.id), nullable=False)
     service_id = Column(Integer, ForeignKey(ServiceModel.id), nullable=False)
     base_url = Column(String)
