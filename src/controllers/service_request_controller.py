@@ -3,7 +3,7 @@ from uuid import uuid4
 from connectors import UAVConnector
 from errors import NoAvailableUAVForTheService, ServiceIsNotActive, ServiceNotFoundByKey, UAVIsNotAvailable
 from mappers import ServiceRequestMapper
-from models import ServiceModel, ServiceRequestModel, UAVServiceModel
+from models import ServiceModel, ServiceRequestModel, UAVModel, UAVServiceModel
 from repositories import ServiceRequestRepository, UAVRepository
 
 from utils.context import Context
@@ -36,12 +36,17 @@ class ServiceRequestController:
         service_request_model = ServiceRequestModel()
         service_request_model.service_request_key = str(uuid4())
 
-        uav_ready_status_model = uav_repository.get_uav_status_model_by_enumerator("ready")
+        ready_uav_status_model = uav_repository.get_uav_status_model_by_enumerator("ready")
+
+        ready_uavs = (
+            self.context.db_session.query(UAVModel.id).filter(UAVModel.uav_status == ready_uav_status_model).all()
+        )
+        uavs_id_list = [uav[0] for uav in ready_uavs]
 
         uav_service_model: UAVServiceModel = (
             self.context.db_session.query(UAVServiceModel)
             .filter(UAVServiceModel.is_active == 1)
-            .filter(UAVServiceModel.uav.uav_status == uav_ready_status_model)
+            .filter(UAVServiceModel.uav_id.in_(uavs_id_list))
             .first()
         )
 
