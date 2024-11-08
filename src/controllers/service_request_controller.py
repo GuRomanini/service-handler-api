@@ -36,12 +36,12 @@ class ServiceRequestController:
         service_request_model = ServiceRequestModel()
         service_request_model.service_request_key = str(uuid4())
 
-        # uav_ready_status_model = uav_repository.get_uav_status_model_by_enumerator("ready")
+        uav_ready_status_model = uav_repository.get_uav_status_model_by_enumerator("ready")
 
         uav_service_model: UAVServiceModel = (
             self.context.db_session.query(UAVServiceModel)
             .filter(UAVServiceModel.is_active == 1)
-            .filter(UAVServiceModel.uav.uav_status.enumerator == "ready")
+            .filter(UAVServiceModel.uav.uav_status == uav_ready_status_model)
             .first()
         )
 
