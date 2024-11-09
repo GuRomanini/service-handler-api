@@ -16,19 +16,6 @@ INSERT INTO ServiceType (enumerator) VALUES
     ('stream');
 
 
-CREATE TABLE ServiceStatus(
-    id                          INT NOT NULL UNIQUE AUTO_INCREMENT,
-    enumerator                  VARCHAR(50) NOT NULL UNIQUE,
-    created_at                  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    PRIMARY KEY (id)
-);
-
-INSERT INTO ServiceStatus (enumerator) VALUES
-    ('active'),
-    ('inactive');
-
-
 CREATE TABLE Service(
     id                          INT NOT NULL UNIQUE AUTO_INCREMENT,
     service_key                 CHAR(36) NOT NULL UNIQUE,
@@ -61,7 +48,6 @@ CREATE TABLE UAV(
     uav_key                     CHAR(36) NOT NULL UNIQUE,
     uav_name                    VARCHAR(100) NOT NULL,
     uav_status_id               INT NOT NULL,
-    gcs_proxy_address           VARCHAR(300) NOT NULL,
     created_at                  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     PRIMARY KEY (id),
@@ -79,6 +65,7 @@ CREATE TABLE UAVService(
     service_id                  INT NOT NULL,
     base_url                    VARCHAR(300),
     is_active                   TINYINT(1),
+    created_at                  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     PRIMARY KEY (id),
     CONSTRAINT fk_uav_service_uav FOREIGN KEY (uav_id)
@@ -122,7 +109,7 @@ CREATE TABLE ServiceRequest(
 
 CREATE TABLE ServiceRequestEvent(
     id                          INT NOT NULL UNIQUE AUTO_INCREMENT,
-    service_request_id          INT  NOT NULL,
+    service_request_id          INT NOT NULL,
     service_request_status_id   INT NOT NULL,
     created_at                  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 

@@ -67,4 +67,7 @@ class ServiceRequestController:
             service_request_repository.get_service_request_status_model_by_enumerator("completed")
         )
 
+        self.context.db_session.add(service_request_model)
+        self.context.db_session.commit()
+
         return ServiceRequestMapper.to_dto(service_request_model)
