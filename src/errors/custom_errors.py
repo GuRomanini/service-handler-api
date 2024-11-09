@@ -65,3 +65,14 @@ class UAVIsNotAvailable(BaseException):
         description = "Failure while trying to contact UAV."
         translation = "Falha ao contactar o UAV."
         super().__init__(title, self.code, http_status, description, translation)
+
+
+class ServiceAlreadyExists(BaseException):
+    code = "SVH000007"
+
+    def __init__(self, extra_fields: dict) -> None:
+        title = "Conflict"
+        http_status = 409
+        description = "A Service with the given name already exists."
+        translation = "Já existe um Serviço com o nome fornecido."
+        super().__init__(title, self.code, http_status, description, translation, extra_fields=extra_fields)
