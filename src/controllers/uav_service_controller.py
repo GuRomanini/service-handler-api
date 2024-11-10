@@ -22,14 +22,10 @@ class UAVServiceController:
         if uav_model is None:
             raise UAVNotFound(extra_fields={"uav_key": uav_service_data["uav_key"]})
 
-        service_repository = ServiceRepository(context=self.context)
-
-        active_service_status = service_repository.get_service_status_model_by_enumerator("active")
-
         service_model: ServiceModel = (
             self.context.db_session.query(ServiceModel)
             .filter(ServiceModel.service_name == uav_service_data["service_name"])
-            .filter(ServiceModel.service_status == active_service_status)
+            .filter(ServiceModel.is_active == 1)
             .one()
         )
 
