@@ -87,3 +87,14 @@ class InvalidPagination(BaseException):
         description = "Invalid integer value for page or size query string parameters."
         translation = "Valor inválido para parâmetros de página ou tamanho de página."
         super().__init__(title, self.code, http_status, description, translation)
+
+
+class UAVNotFoundByKey(BaseException):
+    code = "SVH000009"
+
+    def __init__(self, extra_fields: dict) -> None:
+        title = "Not Found"
+        http_status = 404
+        description = "No UAV found for the given key (uav_key)."
+        translation = "Nenhum UAV encontrado para a chave (uav_key) fornecida."
+        super().__init__(title, self.code, http_status, description, translation, extra_fields=extra_fields)

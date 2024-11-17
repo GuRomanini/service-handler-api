@@ -46,3 +46,12 @@ class UAVResource:
             page=parsed_page,
             page_size=parsed_page_size,
         )
+
+    def on_patch_deactivate(self, req: Request, resp: Response, uav_key: str):
+        SecurityTools.validate_master_request(req)
+
+        uav_controller = UAVController(req.context.instance)
+        response = uav_controller.deactivate_uav(uav_key)
+
+        resp.media = response
+        resp.status = falcon.code_to_http_status(200)
