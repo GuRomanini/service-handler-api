@@ -1,3 +1,4 @@
+from typing import List
 from uuid import uuid4
 
 from connectors import UAVConnector
@@ -71,3 +72,17 @@ class ServiceRequestController:
         self.context.db_session.commit()
 
         return ServiceRequestMapper.to_dto(service_request_model)
+
+    def retrieve_service_requests(
+        self, uav_key: str, service_key: str, service_request_status_enumerator: str, page: int, page_size: int
+    ) -> List[dict]:
+        service_request_repository = ServiceRequestRepository(self.context)
+        service_request_models: List[ServiceRequestModel] = service_request_repository.get_with_filters(
+            page=page,
+            page_size=page_size,
+            uav_key=uav_key,
+            service_key=service_key,
+            service_request_status_enumerator=service_request_status_enumerator,
+        )
+
+        return [ServiceRequestMapper.to_dto(service_request_model) for service_request_model in service_request_models]
