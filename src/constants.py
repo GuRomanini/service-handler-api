@@ -19,6 +19,8 @@ CLOUD_SQL_CONNECTION_NAME = environ.get("CLOUD_SQL_CONNECTION_NAME")
 
 INTERNAL_TOKEN = environ.get("INTERNAL_TOKEN")
 
+MAX_PAGINATION_SIZE = 100
+
 
 def check_variables():
     variable_names = [k for k in dir() if (k[:2] != "__" and not callable(globals()[k]))]

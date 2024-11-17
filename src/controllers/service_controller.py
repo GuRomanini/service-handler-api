@@ -1,5 +1,6 @@
 from sqlalchemy.exc import IntegrityError
 from traceback import format_exc
+from typing import List
 from uuid import uuid4
 
 from errors import ServiceAlreadyExists
@@ -46,3 +47,17 @@ class ServiceController:
                 raise integrity_ex
 
         return ServiceMapper.to_dto(service_model)
+
+    def retrieve_services(
+        self, service_key: str, service_name: str, service_type_enumerator: str, page: int, page_size: int
+    ) -> List[dict]:
+        service_repository = ServiceRepository(self.context)
+        service_models: List[ServiceModel] = service_repository.get_with_filters(
+            page=page,
+            page_size=page_size,
+            service_key=service_key,
+            service_name=service_name,
+            uav_status=service_type_enumerator,
+        )
+
+        return [ServiceMapper.to_dto(service_model) for service_model in service_models]
