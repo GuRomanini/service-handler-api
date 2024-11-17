@@ -76,3 +76,14 @@ class ServiceAlreadyExists(BaseException):
         description = "A Service with the given name already exists."
         translation = "Já existe um Serviço com o nome fornecido."
         super().__init__(title, self.code, http_status, description, translation, extra_fields=extra_fields)
+
+
+class InvalidPagination(BaseException):
+    code = "SVH000008"
+
+    def __init__(self) -> None:
+        title = "Bad Request"
+        http_status = 400
+        description = "Invalid integer value for page or size query string parameters."
+        translation = "Valor inválido para parâmetros de página ou tamanho de página."
+        super().__init__(title, self.code, http_status, description, translation)
