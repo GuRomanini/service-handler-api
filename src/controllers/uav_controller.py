@@ -1,3 +1,4 @@
+from typing import List
 from uuid import uuid4
 
 from mappers import UAVMapper
@@ -27,3 +28,17 @@ class UAVController:
         self.context.db_session.commit()
 
         return UAVMapper.to_dto(uav_model)
+
+    def retrieve_uavs(
+        self, uav_key: str, uav_name: str, uav_status_enumerator: str, page: int, page_size: int
+    ) -> List[dict]:
+        uav_repository = UAVRepository(self.context)
+        uav_models: List[UAVModel] = uav_repository.get_with_filters(
+            page=page,
+            page_size=page_size,
+            uav_key=uav_key,
+            uav_name=uav_name,
+            uav_status=uav_status_enumerator,
+        )
+
+        return [UAVMapper.to_dto(uav_model) for uav_model in uav_models]
