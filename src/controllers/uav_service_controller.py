@@ -1,8 +1,10 @@
+from typing import List
 from uuid import uuid4
 
 from errors import ServiceNotFoundByName, UAVNotFound
 from mappers import UAVServiceMapper
 from models import ServiceModel, UAVModel, UAVServiceModel
+from repositories import UAVServiceRepository
 
 from utils.context import Context
 from utils.logger import Logger
@@ -46,3 +48,14 @@ class UAVServiceController:
         self.context.db_session.commit()
 
         return UAVServiceMapper.to_dto(uav_service_model)
+
+    def retrieve_uav_services(self, uav_key: str, service_key: str, page: int, page_size: int) -> List[dict]:
+        uav_service_repository = UAVServiceRepository(self.context)
+        uav_service_models: List[UAVModel] = uav_service_repository.get_with_filters(
+            page=page,
+            page_size=page_size,
+            uav_key=uav_key,
+            service_key=service_key,
+        )
+
+        return [UAVServiceMapper.to_dto(uav_service_model) for uav_service_model in uav_service_models]
