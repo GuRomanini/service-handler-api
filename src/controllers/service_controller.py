@@ -3,9 +3,9 @@ from traceback import format_exc
 from typing import List
 from uuid import uuid4
 
-from errors import ServiceAlreadyExists
+from errors import ServiceAlreadyExists, ServiceNotFoundByKey
 from mappers import ServiceMapper
-from models import ServiceModel
+from models import ServiceModel, UAVServiceModel
 from repositories import ServiceRepository
 
 from utils.context import Context
@@ -61,3 +61,27 @@ class ServiceController:
         )
 
         return [ServiceMapper.to_dto(service_model) for service_model in service_models]
+
+    def deactivate_service(self, service_key: str) -> dict:
+        service_model: ServiceModel = (
+            self.context.db_session.query(ServiceModel).filter(ServiceModel.service_key == service_key).first()
+        )
+
+        if service_model is None:
+            raise ServiceNotFoundByKey(extra_fields={"service_key": service_key})
+
+        service_model.is_active = 0
+
+        uav_service_models: List[UAVServiceModel] = (
+            self.context.db_session.query(UAVServiceModel)
+            .filter(UAVServiceModel.service_id == service_model.id)
+            .filter(UAVServiceModel.is_active == 1)
+            .all()
+        )
+
+        for uav_service_model in uav_service_models:
+            uav_service_model.is_active = 0
+
+        self.context.db_session.commit()
+
+        return ServiceMapper.to_dto(service_model)

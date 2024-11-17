@@ -46,3 +46,12 @@ class ServiceResource:
             page=parsed_page,
             page_size=parsed_page_size,
         )
+
+    def on_patch_deactivate(self, req: Request, resp: Response, service_key: str):
+        SecurityTools.validate_master_request(req)
+
+        service_controller = ServiceController(req.context.instance)
+        response = service_controller.deactivate_service(service_key)
+
+        resp.media = response
+        resp.status = falcon.code_to_http_status(200)

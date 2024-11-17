@@ -53,9 +53,11 @@ def create():
 
     service_resource = ServiceResource()
     api.add_route("/service", service_resource)
+    api.add_route("/service/{service_key}/deactivate", service_resource, suffix="deactivate")
 
     uav_resource = UAVResource()
     api.add_route("/uav", uav_resource)
+    api.add_route("/uav/{uav_key}/deactivate", uav_resource, suffix="deactivate")
 
     uav_service_resource = UAVServiceResource()
     api.add_route("/uav/service", uav_service_resource)
