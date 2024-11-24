@@ -62,6 +62,9 @@ def create():
     uav_service_resource = UAVServiceResource()
     api.add_route("/uav/service", uav_service_resource)
 
+    uav_service_resource = UAVServiceResource()
+    api.add_route("/uav_service", uav_service_resource)
+
     return api
 
 
