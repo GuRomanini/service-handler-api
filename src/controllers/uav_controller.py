@@ -51,7 +51,7 @@ class UAVController:
             raise UAVNotFoundByKey(extra_fields={"uav_key": uav_key})
 
         uav_repository = UAVRepository(context=self.context)
-        uav_model.uav_status == uav_repository.get_uav_status_model_by_enumerator("inactive")
+        uav_model.uav_status = uav_repository.get_uav_status_model_by_enumerator("inactive")
 
         uav_service_models: List[UAVServiceModel] = (
             self.context.db_session.query(UAVServiceModel)
