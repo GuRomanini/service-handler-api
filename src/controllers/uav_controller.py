@@ -39,7 +39,7 @@ class UAVController:
             page_size=page_size,
             uav_key=uav_key,
             uav_name=uav_name,
-            uav_status=uav_status_enumerator,
+            uav_status_enumerator=uav_status_enumerator,
         )
 
         return [UAVMapper.to_dto(uav_model) for uav_model in uav_models]

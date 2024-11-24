@@ -57,7 +57,7 @@ class ServiceController:
             page_size=page_size,
             service_key=service_key,
             service_name=service_name,
-            uav_status=service_type_enumerator,
+            service_type_enumerator=service_type_enumerator,
         )
 
         return [ServiceMapper.to_dto(service_model) for service_model in service_models]
